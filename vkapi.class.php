@@ -33,13 +33,14 @@ class vkapi {
 	function vkapi($app_id, $vk_id, $api_url = 'api.vk.com/api.php') {
 		$this->app_id = $app_id;
 		$this->vk_id = $vk_id;
-		if (!strstr($api_url, 'http://')) $api_url = 'http://'.$api_url;
+		if (!strstr($api_url, 'https://')) $api_url = 'https://'.$api_url;
 		$this->api_url = $api_url;
 	}
 	
 	function api($method,$params=false) {
 		if (!$params) $params = array(); 
 		$params['api_id'] = $this->app_id;
+		$params['oauth'] = 1;
 		$params['v'] = '3.0';
 		$params['test_mode']='1';
 		$params['method'] = $method;
